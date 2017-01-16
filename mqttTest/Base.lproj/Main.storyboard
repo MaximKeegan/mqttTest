@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="mqttTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="the-v5-ccu">
+                                <rect key="frame" x="16" y="30" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMH-ql-RKh">
+                                <rect key="frame" x="16" y="61" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3K-r3-gWg">
+                                <rect key="frame" x="16" y="92" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tbv-b2-E6e">
+                                <rect key="frame" x="16" y="123" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchValueChangedAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="bkC-UT-lcW"/>
+                                </connections>
+                            </switch>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="-10" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="9Oi-K1-eBW">
+                                <rect key="frame" x="14" y="164" width="347" height="31"/>
+                                <connections>
+                                    <action selector="sliderValueChangedAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="3yh-dV-gc3"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89b-em-RD8">
+                                <rect key="frame" x="16" y="214" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPH-fL-Vbj">
+                                <rect key="frame" x="16" y="245" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="commitRulesAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dme-bx-Pka"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="the-v5-ccu" secondAttribute="trailing" id="1af-y2-AJJ"/>
+                            <constraint firstItem="kPH-fL-Vbj" firstAttribute="top" secondItem="89b-em-RD8" secondAttribute="bottom" constant="10" id="2pw-l3-IBk"/>
+                            <constraint firstItem="the-v5-ccu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="F6z-NP-Lte"/>
+                            <constraint firstItem="eMH-ql-RKh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="G8K-6v-zNo"/>
+                            <constraint firstItem="kPH-fL-Vbj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Iye-hc-XIm"/>
+                            <constraint firstItem="tbv-b2-E6e" firstAttribute="top" secondItem="c3K-r3-gWg" secondAttribute="bottom" constant="10" id="KTo-RC-nUa"/>
+                            <constraint firstItem="the-v5-ccu" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="NcJ-p3-WA4"/>
+                            <constraint firstItem="c3K-r3-gWg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="UMV-2H-OCp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="89b-em-RD8" secondAttribute="trailing" id="h9c-Qe-VTe"/>
+                            <constraint firstItem="89b-em-RD8" firstAttribute="top" secondItem="9Oi-K1-eBW" secondAttribute="bottom" constant="20" id="huP-NU-ASd"/>
+                            <constraint firstItem="9Oi-K1-eBW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="jGG-Oc-w9q"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9Oi-K1-eBW" secondAttribute="trailing" id="jMU-Tx-oPd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eMH-ql-RKh" secondAttribute="trailing" id="lxO-xM-Xty"/>
+                            <constraint firstItem="89b-em-RD8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="oex-SS-9Ee"/>
+                            <constraint firstItem="9Oi-K1-eBW" firstAttribute="top" secondItem="tbv-b2-E6e" secondAttribute="bottom" constant="10" id="osp-3E-nOy"/>
+                            <constraint firstItem="eMH-ql-RKh" firstAttribute="top" secondItem="the-v5-ccu" secondAttribute="bottom" constant="10" id="rzh-YH-8BP"/>
+                            <constraint firstItem="tbv-b2-E6e" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="tex-ey-ZeC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="c3K-r3-gWg" secondAttribute="trailing" id="ucj-d1-chj"/>
+                            <constraint firstItem="c3K-r3-gWg" firstAttribute="top" secondItem="eMH-ql-RKh" secondAttribute="bottom" constant="10" id="xIr-2E-dvs"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="connectLabel" destination="89b-em-RD8" id="nCL-MQ-lJE"/>
+                        <outlet property="heaterEnabledSwitch" destination="tbv-b2-E6e" id="OR8-cg-CwF"/>
+                        <outlet property="setpointSlider" destination="9Oi-K1-eBW" id="qYg-dr-1Y6"/>
+                        <outlet property="temp1Label" destination="the-v5-ccu" id="i7s-c5-Awk"/>
+                        <outlet property="temp2Label" destination="eMH-ql-RKh" id="w8K-hf-eUK"/>
+                        <outlet property="temp3Label" destination="c3K-r3-gWg" id="Jlb-bv-quB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>

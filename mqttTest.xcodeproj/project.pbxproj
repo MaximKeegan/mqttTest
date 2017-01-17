@@ -12,6 +12,7 @@
 		936C9DBC1E2295D50018ABA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 936C9DBA1E2295D50018ABA3 /* Main.storyboard */; };
 		936C9DBE1E2295D50018ABA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 936C9DBD1E2295D50018ABA3 /* Assets.xcassets */; };
 		936C9DC11E2295D50018ABA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 936C9DBF1E2295D50018ABA3 /* LaunchScreen.storyboard */; };
+		93CACC001E2E3AE100C55EF1 /* MQTTClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CACBFF1E2E3AE100C55EF1 /* MQTTClient.swift */; };
 		E74941FC5519B00C0C843FA0 /* Pods_mqttTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38455E7AE99DDB0F53357EA8 /* Pods_mqttTest.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		936C9DBD1E2295D50018ABA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		936C9DC01E2295D50018ABA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		936C9DC21E2295D50018ABA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93CACBFF1E2E3AE100C55EF1 /* MQTTClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTClient.swift; sourceTree = "<group>"; };
 		B51D19273397C4E9115DF718 /* Pods-mqttTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mqttTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mqttTest/Pods-mqttTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +78,7 @@
 				936C9DBD1E2295D50018ABA3 /* Assets.xcassets */,
 				936C9DBF1E2295D50018ABA3 /* LaunchScreen.storyboard */,
 				936C9DC21E2295D50018ABA3 /* Info.plist */,
+				93CACBFF1E2E3AE100C55EF1 /* MQTTClient.swift */,
 			);
 			path = mqttTest;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93CACC001E2E3AE100C55EF1 /* MQTTClient.swift in Sources */,
 				936C9DB91E2295D50018ABA3 /* ViewController.swift in Sources */,
 				936C9DB71E2295D50018ABA3 /* AppDelegate.swift in Sources */,
 			);
@@ -379,6 +383,7 @@
 				936C9DC71E2295D50018ABA3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -56,9 +56,11 @@ class ViewController: UIViewController, CocoaMQTTDelegate {
         mqtt!.subscribe("/heater/1/temperature/internal", qos: CocoaMQTTQOS.qos1)
         mqtt!.subscribe("/heater/1/temperature/external", qos: CocoaMQTTQOS.qos1)
         mqtt!.subscribe("/heater/1/temperature/floor", qos: CocoaMQTTQOS.qos1)
-        mqtt!.subscribe("/heater/1/relay/success", qos: CocoaMQTTQOS.qos1)
-        mqtt!.subscribe("/heater/1/setpoint/success", qos: CocoaMQTTQOS.qos1)
-        mqtt!.subscribe("/heater/1/rules/success", qos: CocoaMQTTQOS.qos1)
+        mqtt!.subscribe("/heater/1/relay/1/status", qos: CocoaMQTTQOS.qos1)
+        mqtt!.subscribe("/heater/1/relay/2/status", qos: CocoaMQTTQOS.qos1)
+        mqtt!.subscribe("/heater/1/relay/3/status", qos: CocoaMQTTQOS.qos1)
+        mqtt!.subscribe("/heater/1/setpoint/status", qos: CocoaMQTTQOS.qos1)
+        mqtt!.subscribe("/heater/1/rules/status", qos: CocoaMQTTQOS.qos1)
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,7 +69,7 @@ class ViewController: UIViewController, CocoaMQTTDelegate {
     }
 
     @IBAction func switchValueChangedAction(_ sender: UISwitch) {
-        let channel = "/heater/1/relay"
+        let channel = "/heater/1/relay/3"
         let message = (sender.isOn ? "1" : "0")
         self.mqtt!.publish(channel, withString: message, qos: CocoaMQTTQOS.qos0, retained: true, dup: true)
     }
@@ -137,11 +139,11 @@ class ViewController: UIViewController, CocoaMQTTDelegate {
         case "/heater/1/temperature/floor":
             temp3Label.text = message.string
             break
-        case "/heater/1/relay/success":
+        case "/heater/1/relay/3/status":
             heaterEnabledSwitch.setOn((message.string == "1" ? true : false) , animated: true)
             break
             
-        case "/heater/1/setpoint/success":
+        case "/heater/1/setpoint/status":
             setpointSlider.value = Float(message.string!)!
             break
         default: break

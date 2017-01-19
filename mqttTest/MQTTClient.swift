@@ -10,19 +10,33 @@ import UIKit
 import CocoaMQTT
 import Keys
 
+typealias ConnectionStatusBlock = (CocoaMQTTConnState) -> Void
+typealias MessageReceivedBlock = (_ device:String, _ topic:String, _ message:Any) -> Void
 
 class MQTTClient: NSObject, CocoaMQTTDelegate {
     static let shared = MQTTClient()
     public var mqtt:CocoaMQTT?
     
+    private var connectionStatusBlock:ConnectionStatusBlock?
+    func setConnectionStatusBlock(callback: ConnectionStatusBlock? = nil ) {
+        connectionStatusBlock = callback
+    }
+    
+    private var messageReceivedBlock:MessageReceivedBlock?
+    func setMessageReceivedBlock(callback: MessageReceivedBlock? = nil) {
+        messageReceivedBlock = callback
+    }
+    
+    
     private override init() {
+        super.init()
         let keys = MqttTestKeys.init()
         
         let clientID = "CocoaMQTT-" + String(ProcessInfo().processIdentifier)
         mqtt = CocoaMQTT(clientID: clientID, host: keys.mqttHost, port: 8883)
         mqtt!.username = keys.mqttUser
         mqtt!.password = keys.mqttPassword
-        mqtt!.willMessage = CocoaMQTTWill(topic: "/will", message: "dieout")
+//        mqtt!.willMessage = CocoaMQTTWill(topic: "/will", message: "dieout")
         mqtt!.keepAlive = 60
         mqtt!.delegate = self
         mqtt!.enableSSL = true
@@ -35,7 +49,9 @@ class MQTTClient: NSObject, CocoaMQTTDelegate {
     func connect () {
         mqtt!.connect()
 //        print("connecting")
-//        self.connectLabel.text = "connecting..."
+        if (connectionStatusBlock != nil) {
+            connectionStatusBlock!( CocoaMQTTConnState.connecting )
+        }
     }
     
     func disconnect () {
@@ -46,9 +62,12 @@ class MQTTClient: NSObject, CocoaMQTTDelegate {
     
     func mqtt(_ mqtt: CocoaMQTT, didConnect host: String, port: Int) {
         print("did connect", host, port)
+        self.subscribeToChannel()
     }
     func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
-        self.connectLabel.text = "connected"
+        if (connectionStatusBlock != nil) {
+            connectionStatusBlock!(CocoaMQTTConnState.connected)
+        }
         print("didConnectAck: \(ack)，rawValue: \(ack.rawValue)")
         
         if ack == .accept {
@@ -63,25 +82,9 @@ class MQTTClient: NSObject, CocoaMQTTDelegate {
     }
     func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16 ) {
         print("message", message.topic, message.string as Any)
-        switch message.topic {
-        case "/heater/1/temperature/internal":
-            temp1Label.text = message.string
-            break
-        case "/heater/1/temperature/external":
-            temp2Label.text = message.string
-            break
-        case "/heater/1/temperature/floor":
-            temp3Label.text = message.string
-            break
-        case "/heater/1/relay/success":
-            heaterEnabledSwitch.setOn((message.string == "1" ? true : false) , animated: true)
-            break
-            
-        case "/heater/1/setpoint/success":
-            setpointSlider.value = Float(message.string!)!
-            break
-        default: break
-            
+        
+        if (messageReceivedBlock != nil) {
+            self.messageReceivedBlock?("device", message.topic as String, message.string as Any)
         }
         
     }
@@ -94,15 +97,27 @@ class MQTTClient: NSObject, CocoaMQTTDelegate {
     func mqttDidReceivePong(_ mqtt: CocoaMQTT) {
     }
     func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?) {
-        print("did disconnect", err?.localizedDescription)
-        self.connectLabel.text = "disconnected"
+//        print("did disconnect", err?.localizedDescription)
+        
+        if (connectionStatusBlock != nil) {
+            connectionStatusBlock!(CocoaMQTTConnState.disconnected)
+        }
         
         if (UIApplication.shared.applicationState == .active && mqtt.connState == .disconnected && err != nil) {
-            self.perform(#selector(ViewController.connect), with: nil, afterDelay: 3.0)
+            self.perform(#selector(self.connect), with: nil, afterDelay: 3.0)
         }
         
     }
 
-
+    func subscribeToChannel() {
+        
+        mqtt?.subscribe("/heater/1/temperature/internal", qos: CocoaMQTTQOS.qos1)
+        mqtt?.subscribe("/heater/1/temperature/external", qos: CocoaMQTTQOS.qos1)
+        mqtt?.subscribe("/heater/1/temperature/floor", qos: CocoaMQTTQOS.qos1)
+        mqtt?.subscribe("/heater/1/relay/status", qos: CocoaMQTTQOS.qos1)
+        mqtt?.subscribe("/heater/1/setpoint/status", qos: CocoaMQTTQOS.qos1)
+        mqtt?.subscribe("/heater/1/rules/status", qos: CocoaMQTTQOS.qos1)
+    }
+    
 
 }

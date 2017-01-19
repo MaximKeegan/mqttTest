@@ -23,16 +23,53 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-    }
+        MQTTClient.shared.setConnectionStatusBlock { (status) in
+            switch status {
+            case .connected:
+                self.connectLabel.text = "connected"
+                break
+            case .connecting:
+                self.connectLabel.text = "connecting..."
+                break
+                
+            case .disconnected:
+                self.connectLabel.text = "disconnected"
+                break
+                
+            case .initial:
+                self.connectLabel.text = "initial..."
+                break
+                
+            }
+        }
+        
+        
+        MQTTClient.shared.setMessageReceivedBlock { (device, topic, message) in
+            switch topic {
+            case "/heater/1/temperature/internal":
+                self.temp1Label.text = message as? String
+                break
+            case "/heater/1/temperature/external":
+                self.temp2Label.text = message as? String
+                break
+            case "/heater/1/temperature/floor":
+                self.temp3Label.text = message as? String
+                break
+            case "/heater/1/relay/3/status":
+                self.heaterEnabledSwitch.setOn((message as? String == "1" ? true : false) , animated: true)
+                break
+    
+            case "/heater/1/setpoint/status":
+                self.setpointSlider.value = Float(message as! String)!
+                break
+            default: break
+                
+            }
 
-    func subscribeToChannel() {
-
-        MQTTClient.shared.mqtt?.subscribe("/heater/1/temperature/internal", qos: CocoaMQTTQOS.qos1)
-        MQTTClient.shared.mqtt?.subscribe("/heater/1/temperature/external", qos: CocoaMQTTQOS.qos1)
-        MQTTClient.shared.mqtt?.subscribe("/heater/1/temperature/floor", qos: CocoaMQTTQOS.qos1)
-        MQTTClient.shared.mqtt?.subscribe("/heater/1/relay/success", qos: CocoaMQTTQOS.qos1)
-        MQTTClient.shared.mqtt?.subscribe("/heater/1/setpoint/success", qos: CocoaMQTTQOS.qos1)
-        MQTTClient.shared.mqtt?.subscribe("/heater/1/rules/success", qos: CocoaMQTTQOS.qos1)
+            
+            
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,7 +78,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func switchValueChangedAction(_ sender: UISwitch) {
-        let channel = "/heater/1/relay"
+        let channel = "/heater/1/relay/3"
         let message = (sender.isOn ? "1" : "0")
         MQTTClient.shared.mqtt?.publish(channel, withString: message, qos: CocoaMQTTQOS.qos0, retained: true, dup: true)
     }

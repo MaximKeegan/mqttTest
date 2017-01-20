@@ -114,7 +114,7 @@ class MQTTClient: NSObject, CocoaMQTTDelegate {
         mqtt?.subscribe("/heater/1/temperature/internal", qos: CocoaMQTTQOS.qos1)
         mqtt?.subscribe("/heater/1/temperature/external", qos: CocoaMQTTQOS.qos1)
         mqtt?.subscribe("/heater/1/temperature/floor", qos: CocoaMQTTQOS.qos1)
-        mqtt?.subscribe("/heater/1/relay/status", qos: CocoaMQTTQOS.qos1)
+        mqtt?.subscribe("/heater/1/relay/3/status", qos: CocoaMQTTQOS.qos1)
         mqtt?.subscribe("/heater/1/setpoint/status", qos: CocoaMQTTQOS.qos1)
         mqtt?.subscribe("/heater/1/rules/status", qos: CocoaMQTTQOS.qos1)
     }

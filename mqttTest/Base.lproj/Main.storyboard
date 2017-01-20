@@ -47,7 +47,7 @@
                                 </connections>
                             </switch>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="-10" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="9Oi-K1-eBW">
-                                <rect key="frame" x="14" y="164" width="347" height="31"/>
+                                <rect key="frame" x="14" y="164" width="267" height="31"/>
                                 <connections>
                                     <action selector="sliderValueChangedAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="3yh-dV-gc3"/>
                                 </connections>
@@ -65,33 +65,67 @@
                                     <action selector="commitRulesAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dme-bx-Pka"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IkP-MD-uKv">
+                                <rect key="frame" x="339" y="30" width="20" height="20"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="aCz-x5-QDJ"/>
+                                    <constraint firstAttribute="height" constant="20" id="cAP-qM-R6c"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c3U-jV-jGm">
+                                <rect key="frame" x="339" y="61" width="20" height="20"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="KRL-m7-gAv"/>
+                                    <constraint firstAttribute="height" constant="20" id="r34-C4-GOL"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lhz-FW-KiK">
+                                <rect key="frame" x="289" y="169" width="70" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="y6q-q7-d9f"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="the-v5-ccu" secondAttribute="trailing" id="1af-y2-AJJ"/>
                             <constraint firstItem="kPH-fL-Vbj" firstAttribute="top" secondItem="89b-em-RD8" secondAttribute="bottom" constant="10" id="2pw-l3-IBk"/>
+                            <constraint firstItem="c3U-jV-jGm" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="BdM-lL-yag"/>
                             <constraint firstItem="the-v5-ccu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="F6z-NP-Lte"/>
                             <constraint firstItem="eMH-ql-RKh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="G8K-6v-zNo"/>
+                            <constraint firstItem="Lhz-FW-KiK" firstAttribute="centerY" secondItem="9Oi-K1-eBW" secondAttribute="centerY" id="GL4-fj-k0F"/>
                             <constraint firstItem="kPH-fL-Vbj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Iye-hc-XIm"/>
                             <constraint firstItem="tbv-b2-E6e" firstAttribute="top" secondItem="c3K-r3-gWg" secondAttribute="bottom" constant="10" id="KTo-RC-nUa"/>
                             <constraint firstItem="the-v5-ccu" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="NcJ-p3-WA4"/>
                             <constraint firstItem="c3K-r3-gWg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="UMV-2H-OCp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="IkP-MD-uKv" secondAttribute="trailing" id="WfJ-KX-8s8"/>
+                            <constraint firstItem="c3U-jV-jGm" firstAttribute="top" secondItem="the-v5-ccu" secondAttribute="bottom" constant="10" id="ZAV-at-oZD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Lhz-FW-KiK" secondAttribute="trailing" id="fLj-NI-aO5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="89b-em-RD8" secondAttribute="trailing" id="h9c-Qe-VTe"/>
                             <constraint firstItem="89b-em-RD8" firstAttribute="top" secondItem="9Oi-K1-eBW" secondAttribute="bottom" constant="20" id="huP-NU-ASd"/>
                             <constraint firstItem="9Oi-K1-eBW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="jGG-Oc-w9q"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="9Oi-K1-eBW" secondAttribute="trailing" id="jMU-Tx-oPd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eMH-ql-RKh" secondAttribute="trailing" id="lxO-xM-Xty"/>
                             <constraint firstItem="89b-em-RD8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="oex-SS-9Ee"/>
                             <constraint firstItem="9Oi-K1-eBW" firstAttribute="top" secondItem="tbv-b2-E6e" secondAttribute="bottom" constant="10" id="osp-3E-nOy"/>
                             <constraint firstItem="eMH-ql-RKh" firstAttribute="top" secondItem="the-v5-ccu" secondAttribute="bottom" constant="10" id="rzh-YH-8BP"/>
+                            <constraint firstItem="IkP-MD-uKv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="tBj-r8-O7l"/>
                             <constraint firstItem="tbv-b2-E6e" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="tex-ey-ZeC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="c3K-r3-gWg" secondAttribute="trailing" id="ucj-d1-chj"/>
                             <constraint firstItem="c3K-r3-gWg" firstAttribute="top" secondItem="eMH-ql-RKh" secondAttribute="bottom" constant="10" id="xIr-2E-dvs"/>
+                            <constraint firstItem="Lhz-FW-KiK" firstAttribute="leading" secondItem="9Oi-K1-eBW" secondAttribute="trailing" constant="10" id="xLA-IZ-LzG"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="connectLabel" destination="89b-em-RD8" id="nCL-MQ-lJE"/>
+                        <outlet property="heater1statusView" destination="IkP-MD-uKv" id="4cv-nc-s2a"/>
+                        <outlet property="heater2statusView" destination="c3U-jV-jGm" id="lfA-ZA-ihG"/>
                         <outlet property="heaterEnabledSwitch" destination="tbv-b2-E6e" id="OR8-cg-CwF"/>
+                        <outlet property="setpointLabel" destination="Lhz-FW-KiK" id="EFI-Kc-3mj"/>
                         <outlet property="setpointSlider" destination="9Oi-K1-eBW" id="qYg-dr-1Y6"/>
                         <outlet property="temp1Label" destination="the-v5-ccu" id="i7s-c5-Awk"/>
                         <outlet property="temp2Label" destination="eMH-ql-RKh" id="w8K-hf-eUK"/>
@@ -100,6 +134,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="92.203898050974516"/>
         </scene>
     </scenes>
 </document>

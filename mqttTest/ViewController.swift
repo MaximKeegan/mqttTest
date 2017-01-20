@@ -14,9 +14,12 @@ class ViewController: UIViewController {
     @IBOutlet var temp2Label: UILabel!
     @IBOutlet var temp3Label: UILabel!
     @IBOutlet var setpointSlider: UISlider!
+    @IBOutlet var setpointLabel: UILabel!
     @IBOutlet var heaterEnabledSwitch: UISwitch!
     @IBOutlet var connectLabel: UILabel!
     
+    @IBOutlet var heater1statusView: UIView!
+    @IBOutlet var heater2statusView: UIView!
 //    var appState : UIApplicationState
 
     override func viewDidLoad() {
@@ -55,12 +58,20 @@ class ViewController: UIViewController {
             case "/heater/1/temperature/floor":
                 self.temp3Label.text = message as? String
                 break
+            case "/heater/1/relay/1/status":
+                self.heater1statusView.backgroundColor = (message as? String == "1" ? UIColor.red : UIColor.gray)
+                break
+            case "/heater/1/relay/2/status":
+                self.heater2statusView.backgroundColor = (message as? String == "1" ? UIColor.red : UIColor.gray)
+                break
             case "/heater/1/relay/3/status":
                 self.heaterEnabledSwitch.setOn((message as? String == "1" ? true : false) , animated: true)
                 break
     
             case "/heater/1/setpoint/status":
                 self.setpointSlider.value = Float(message as! String)!
+                self.setpointLabel.textColor = UIColor.green
+                self.setpointLabel.text = message as! String
                 break
             default: break
                 
@@ -85,7 +96,9 @@ class ViewController: UIViewController {
 
     @IBAction func sliderValueChangedAction(_ sender: UISlider) {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(ViewController.sendSliderValue), object: nil)
-        self.perform(#selector(ViewController.sendSliderValue), with: nil, afterDelay: 0.2)
+        self.perform(#selector(ViewController.sendSliderValue), with: nil, afterDelay: 0.5)
+        self.setpointLabel.text = "\(setpointSlider.value)"
+        self.setpointLabel.textColor = UIColor.black
     }
     
     @IBAction func commitRulesAction(_ sender: UIButton) {
@@ -114,7 +127,8 @@ class ViewController: UIViewController {
         let channel = "/heater/1/setpoint"
         let message = "\(setpointSlider.value)"
         MQTTClient.shared.mqtt?.publish(channel, withString: message, qos: CocoaMQTTQOS.qos1, retained: true, dup: true)
-
+        self.setpointLabel.textColor = UIColor.yellow
+        
     }
 }
 
